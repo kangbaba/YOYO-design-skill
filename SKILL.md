@@ -110,6 +110,44 @@ risk: safe
 4. **验证** — 在关键节点使用 `get_screenshot` 检查效果
 5. **修复** — 发现视觉问题立即修复，再继续下一步
 
+### 文字样式 — 必须使用组件库样式
+- **禁止手动设置 `fontSize` + `fontName`。** 必须从 YoYo 组件库导入文字样式并通过 `textStyleId` 应用。
+- 导入方式：`const style = await figma.importStyleByKeyAsync("key")` → `textNode.textStyleId = style.id`
+- 导入样式后仍需 `await figma.loadFontAsync()` 加载字体，否则修改 `characters` 会报错
+
+**文字样式 Key（已缓存）：**
+
+| 样式名 | Key | 字号 | 字重 |
+|--------|-----|------|------|
+| 40/M | `98e8f83533036a0334628762355120181de5f1a0` | 40px | Medium |
+| 40/R | `d78dcb95ea3e3b90e39752af4e8f99e731071ba2` | 40px | Regular |
+| 36/M | `9e3d839b679e6b8aa7a373a77a16919d74f745af` | 36px | Medium |
+| 36/R | `74cc42025a6e39411c38d6ed77c7f9d7d5875f42` | 36px | Regular |
+| 32/M | `cb625f9eceeaba072b354a97d09cc8689e3a6146` | 32px | Medium |
+| 32/R | `8f80258b3887e5554f71ed08ae0fb430f0a6ea6a` | 32px | Regular |
+| 30/M | `52d3c36977de7cbdd0e60b66d9d95f468c9a8872` | 30px | Medium |
+| 30/R | `0ea3062b0291d4676a6fb018af2c1201d3de1c59` | 30px | Regular |
+| 28/M | `d8d3cdd0c427a68336e6bceae234fd95266091b6` | 28px | Medium |
+| 28/R | `ae7c242defefd7dad54c418faed0ad4ec6b95922` | 28px | Regular |
+| 26/M | `a1d2a66d7c4272c06fdccd0038e1e4f807c4134a` | 26px | Medium |
+| 26/R | `320a5e1d986ef0533484ddf3b8b0f4c717f2d181` | 26px | Regular |
+| 24/M | `c0fcf4b2a5080f4e3c1b432235bdc6b68e013e8e` | 24px | Medium |
+| 24/R | `8424aa5537d76d0391dc1929d882fe6dfff30efd` | 24px | Regular |
+| 20/M | `6bb1d6e1441845489a53238f2148d8dd0628d371` | 20px | Medium |
+| 20/R | `3d8bf483a27ee3ffea332a22a98cd61ab61e09f6` | 20px | Regular |
+| 16/M | `80c0dfe7002340577744f007c79a4cf1dc94a18f` | 16px | Medium |
+| 16/R | `02c342504b88c6bc9eee5091f1a5713010cfe603` | 16px | Regular |
+
+**使用示例：**
+```js
+// 导入 28/M 样式并应用
+const style28M = await figma.importStyleByKeyAsync("d8d3cdd0c427a68336e6bceae234fd95266091b6");
+await figma.loadFontAsync({ family: "Roboto", style: "Medium" });
+const text = figma.createText();
+text.textStyleId = style28M.id;
+text.characters = "Hello";
+```
+
 ### Figma Plugin API 注意事项
 - 颜色值范围 **0–1**（十六进制值除以 255），如 `#333333` → `{ r: 0.2, g: 0.2, b: 0.2 }`
 - Fills/Strokes 是**只读数组** — 需要克隆、修改、重新赋值
