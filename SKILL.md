@@ -114,6 +114,12 @@ risk: safe
 - 颜色值范围 **0–1**（十六进制值除以 255），如 `#333333` → `{ r: 0.2, g: 0.2, b: 0.2 }`
 - Fills/Strokes 是**只读数组** — 需要克隆、修改、重新赋值
 - `layoutSizingHorizontal/Vertical = 'FILL'` 必须在 `parent.appendChild(child)` **之后**设置
+- **禁止在自动布局子级中残留 Fixed 尺寸（常见 AI 错误）。** `resize()` 会将宽高设为 FIXED，必须在 `appendChild` 后显式覆盖：
+  - 文本框/图标+文案等简单结构：双轴都用 `'HUG'`
+  - 需要撑满父级宽度的容器：水平 `'FILL'`，垂直 `'HUG'`
+  - 图标等固定尺寸元素：FIXED 是合理的，无需修改
+  - 只有顶层画板（720×1560）允许双轴 FIXED
+  - **交付前自检**：检查所有非图标的 Frame 子级，确认 `layoutSizingVertical` 不是无意义的 FIXED
 - 任何文本属性修改前必须先 `await figma.loadFontAsync()`
 - 始终 `return` 创建/修改的节点 ID
 
