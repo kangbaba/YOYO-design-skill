@@ -88,11 +88,23 @@ risk: safe
 - 图层命名使用有意义的名称（`header`、`card-list`、`tab-bar`），禁止 `Frame 1`、`Rectangle 2`
 - 每个页面状态（包括弹窗、浮层）应为独立的顶层画板
 
+### 撤销机制（重要：use_figma 的修改无法通过 Cmd+Z 撤销）
+- **Figma 的撤销（Cmd+Z）对 use_figma 远程写入无效。`saveVersionHistoryAsync` 在 MCP 环境中也不可用。**
+- **因此必须通过记录节点 ID 来实现撤销：**
+  - 每次 `use_figma` 调用都必须 `return` 所有创建的节点 ID（`createdNodeIds`）
+  - Claude 在整个构建过程中维护一份完整的已创建节点 ID 列表
+  - 用户要求撤销时，Claude 通过 `node.remove()` 删除这些节点来回滚
+- **用户操作指南：**
+  - 要求撤销单步：告诉 AI "undo last step" — AI 会删除上一步创建的节点
+  - 要求撤销整个页面：告诉 AI "delete the [页面名] frame" — AI 会删除整个顶层画板
+  - 手动保险：在 AI 开始大规模构建前，可以在 Figma 中手动添加版本（File → Save to Version History），以便通过 Figma 版本历史恢复
+- **删除/覆盖现有节点前，必须先确认用户意图**，避免误删
+
 ### 渐进式构建模式
 分步构建页面并验证：
 1. **检查**目标文件 — 了解现有页面、节点、定位
 2. **导入组件库组件** — 导航栏、底部栏、按钮等
-3. **构建内容区块** — 每个区块一次 `use_figma` 调用
+3. **构建内容区块** — 每个区块一次 `use_figma` 调用，**记录所有 createdNodeIds**
 4. **验证** — 在关键节点使用 `get_screenshot` 检查效果
 5. **修复** — 发现视觉问题立即修复，再继续下一步
 
