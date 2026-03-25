@@ -86,6 +86,8 @@ risk: safe
 - 使用合适的 SVG 矢量图标（通过 `figma.createVector()` 创建路径）— 禁止使用灰色占位方块
 - 严格遵循 YoYo 色彩规范 — 不使用随意的灰色
 - 图层命名使用有意义的名称（`header`、`card-list`、`tab-bar`），禁止 `Frame 1`、`Rectangle 2`
+- **禁止创建仅用于布局目的的多余包裹层**（如 `xxx-area-flex`、`xxx-container-wrap`）。如果一个 frame 唯一的作用是设置 flex 或 fill，应该把这个属性直接设在父级或子级上，而不是新建一层
+- 图层结构应该反映**设计语义**（如 `chat-area`、`order-list`），而不是**代码实现细节**（如 `-flex`、`-wrapper`、`-container`）
 - 每个页面状态（包括弹窗、浮层）应为独立的顶层画板
 
 ### 撤销机制（重要：use_figma 的修改无法通过 Cmd+Z 撤销）
