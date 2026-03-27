@@ -167,188 +167,201 @@ text.characters = "Hello";
 
 ---
 
-## 一、色彩体系
+## 1. Color System
 
-### 1.1 品牌色
+> IMPORTANT: Colors are also available as **paint styles** in the YoYo library. Use `figma.importStyleByKeyAsync(key)` to import and apply via `node.fillStyleId = style.id` instead of manually setting color values.
 
-| 名称 | 值 | 说明 |
-|------|------|------|
-| YoYo Green | 渐变 `#78E349` → `#1DCBCC`（135°） | 品牌主色，渐变。用于顶栏、主按钮底色、强调元素 |
-| Text green | `#29CC96` | 品牌色纯色版本，用于白色背景上的品牌色文字、次按钮描边和文字、Tab 选中态等 |
-| Text green-light | `#D4F5EA` | 绿色浅底，用于浅色标签底色、己方聊天气泡底色 |
+### 1.1 Brand Colors (Primary)
 
-### 1.2 文字基础色
+| Name | Library Style | Value | Usage |
+|------|--------------|-------|-------|
+| Primary/Green-gradience | `675e65ef...` | `#78E349` → `#1DCBCC` (135°) | Top bars, primary buttons, accent elements |
+| Primary/Green-solid | `42fcfaa6...` | `#29CC96` | Brand color text on white, secondary button border/text, selected tab |
+| Text green-light | `e955d69d...` | `#D4F5EA` | Light tag backgrounds, own chat bubble bg |
 
-| 名称 | 值 | 说明 |
-|------|------|------|
-| Text black | `#333333` | 主要正文文字，用于浅色背景 |
-| Secondary | `#666666` | 次要文字 |
-| Hint | `#999999` | 辅助说明文字、三级按钮文字/描边 |
-| Text disable | `#CCCCCC` | 禁用态文字、占位符文字 |
+### 1.2 Text Colors
 
-### 1.3 功能色
+| Name | Library Style | Value | Usage |
+|------|--------------|-------|-------|
+| 333 (Text black) | `1b2abcd5...` | `#333333` | Primary body text on light backgrounds |
+| 666 | `1d3a537f...` | `#666666` | Secondary text |
+| 999 | `b114b91b...` | `#999999` | Hint text, tertiary button text/border |
+| 000 80 | `1c1bd9f3...` | `#CCCCCC` | Disabled text, placeholder text |
 
-| 名称 | 值 | 说明 |
-|------|------|------|
-| Red | `#FF6060` | 错误、未读红点、挂断、强提醒 |
-| Yellow | `#FFCE00` | 金币、奖励、高亮提示 |
-| VIP | 渐变 `#D1911D` → `#FFDE57` → `#D1911D`（三段式） | VIP 标识专用金色渐变 |
-| AI Persona | `#AA88FF` | AI 相关功能标识，紫色 |
+### 1.3 Functional Colors
 
-### 1.4 中性色
+| Name | Library Style | Value | Usage |
+|------|--------------|-------|-------|
+| red | `30e0a47b...` | `#FF6060` | Error, unread badge, hangup, strong alert |
+| yellow | `7b7a7488...` | `#FFCE00` | Coins, rewards, highlight |
+| VIP | `37f7ba0c...` | `#D1911D` → `#FFDE57` → `#D1911D` | VIP badge exclusive gold gradient |
+| ai persona | `c1c9c988...` | `#AA88FF` | AI feature indicator, purple |
 
-| 名称 | 值 | 说明 |
-|------|------|------|
-| 000 | `#000000` | 纯黑，极少使用，特殊强调 |
-| 333 | `#333333` | 主文字色（= Text black） |
-| 666 | `#666666` | 次要文字 |
-| 999 | `#999999` | 辅助说明文字、三级按钮文字/描边 |
-| F5F5F5 | `#F5F5F5` | 浅灰主背景/卡片底色 |
-| CCCCCC | `#CCCCCC` | 禁用态（= Text disable） |
-| E6E6E6 | `#E6E6E6` | 分割线 |
-| Overlay | `rgba(0,0,0,0.50)` | 半透明遮罩 |
-| fff | `#FFFFFF` | 纯白，卡片/列表背景、三级页面背景 |
-| fff 60 | `rgba(255,255,255,0.60)` | 白色 60% 透明度，用于沉浸式页面文字 |
+### 1.4 Neutral Colors
 
-### 1.5 家族标签色
+| Name | Library Style | Value | Usage |
+|------|--------------|-------|-------|
+| 000 | `129a325d...` | `#000000` | Pure black, rarely used |
+| 000 96 | `00f755e1...` | `#F5F5F5` | Light grey main background |
+| 000 90 (line) | `e878c837...` | `#E6E6E6` | Divider lines |
+| 000 50 | `aa18538b...` | `rgba(0,0,0,0.50)` | Semi-transparent overlay |
+| fff | `8939f993...` | `#FFFFFF` | White, card/list background |
+| fff 60 | `a4dc9ea1...` | `rgba(255,255,255,0.60)` | White 60% opacity for immersive text |
 
-**文字色：** 普通 `#00B182`、青铜 `#006FD2`、白银 `#6F15D8`、黄金 `#CD1820`
-**底色：** 普通 `#E1F9E3`、青铜 `#DAF0F7`、白银 `#DBDEF7`、黄金 `#FAF0D9`
+### 1.5 Secondary Colors
 
-### 1.6 贵族文字色
-等级1: `#3FA54E` | 等级2: `#54CFF4` | 等级3: `#AA88FF` | 等级4: `#FF43C5` | 等级5: `#FF1717`
+| Name | Library Style | Value | Usage |
+|------|--------------|-------|-------|
+| Secondary/green | `005d9cd9...` | `#E1F9E3` | Family tag bg (Normal) |
+| Secondary/blue | `e27a467c...` | `#DAF0F7` | Family tag bg (Bronze) |
+| Secondary/purple | `f44e06a3...` | `#DBDEF7` | Family tag bg (Silver) |
+| Secondary/gold | `ce3b4c47...` | `#FAF0D9` | Family tag bg (Gold) |
 
-### 1.7 Room & Game 类型色（渐变，方向均为 135°）
-mlbb: `#8B75FF` → `#ABBAFF` | ludo: `#95B6FF` → `#74C7FF` | find friends: `#FFBD99` → `#FF749D` | dominoes: `#99E8C6` → `#86CFB6` | amoungus: `#FFE281` → `#FF9D49` | pubg: `#5DACE0` → `#B9D0FF` | bull&sheep: `#FFBB77` → `#F86A6A` | free fire: `#39D1DD` → `#BFFFF1` | roblox: `#D59070` → `#B35742`
+### 1.6 Family Tag Text Colors
 
----
+Normal: `#00B182` | Bronze: `#006FD2` | Silver: `#6F15D8` | Gold: `#CD1820`
 
-## 二、字号体系
+### 1.7 Noble Text Colors
 
-**字体：** Roboto
-**字重：** 每个字号均有 Medium (M) 和 Regular (R) 两个变体
-**行高：** Auto | **字间距：** 0px
-**设计稿基准：** 720px 宽度
+Level 1: `#3FA54E` | Level 2: `#54CFF4` | Level 3: `#AA88FF` | Level 4: `#FF43C5` | Level 5: `#FF1717`
 
-| 字号 | 字重 | 使用场景 |
-|------|------|------|
-| 40px | M | 超大数字展示（金币余额等） |
-| 36px | M/R | 大按钮文字 |
-| 32px | M | 页面主标题（如 "Message"） |
-| 30px | M/R | 次级大标题 |
-| 28px | M | **全 App 最高频字号**：正文、列表标题、模块标题、中按钮文字 |
-| 26px | M/R | 小模块标题/卡片标题 |
-| 24px | R | 列表说明文字、小按钮文字 |
-| 20px | R | 辅助说明/描述文字 |
-| 16px | R | 最小字号，标签内文字、Tab 栏文字 |
+### 1.8 Gradients
+
+| Name | Library Style | Stops |
+|------|--------------|-------|
+| Blue gradient | `17f9e5dc...` | `#6A5EEF` → `#38AEFF` |
+| Purple gradient | `de59937a...` | `#7736DA` → `#C943DD` |
+
+### 1.9 Room & Game Type Colors (gradients, 135°)
+
+mlbb: `#8B75FF` → `#ABBAFF` | ludo: `#95B6FF` → `#74C7FF` | find friends: `#FFBD99` → `#FF749D` | dominoes: `#99E8C6` → `#86CFB6` | amoungus: `#FFE281` → `#FF9D49` | pubg: `#5DACE0` → `#B9D0FF` | bull&sheep: `#FFBB77` → `#F86A6A` | free fire: `#DDA75E` → `#F3DDBD` | roblox: `#39D1DD` → `#BFFFF1` | uno: `#D59070` → `#B35742` | video room: `#4D4D4D` → `#666666`
 
 ---
 
-## 三、按钮体系
+## 2. Typography
 
-**通用规则：全圆角 Pill（圆角 = 高度/2），文字距左右边缘最小 24px**
+**Font:** Roboto | **Weights:** Medium (M) and Regular (R) for each size
+**Line height:** Auto | **Letter spacing:** 0px | **Design base:** 720px width
 
-### 3.1 按钮尺寸
-
-| 尺寸 | 高度 | 字号 |
-|------|------|------|
-| 大按钮 | 96px | 36px |
-| 中按钮 | 80px | 28px |
-| 小按钮 | 64px | 28px |
-
-### 3.2 按钮样式层级
-
-| 层级 | 底色 | 文字色 | 描边 | 使用场景 |
-|------|------|------|------|------|
-| 主按钮 | YoYo Green 渐变 | `#FFFFFF` | 无 | 核心操作（确认、提交、加入等） |
-| 次按钮 | `#FFFFFF` | `#29CC96` | `#29CC96` | 次要操作 |
-| 三级按钮 | `#FFFFFF` | `#999999` | `#999999` | 弱操作（跳过、稍后再说） |
-| 四级按钮 | `#FFFFFF` | `#333333` | 无 | 文字链式按钮（更多、查看全部） |
+| Size | Weight | Usage |
+|------|--------|-------|
+| 40px | M | Extra large number display (coin balance) |
+| 36px | M/R | Large button text |
+| 32px | M | Page main title (e.g. "Message") |
+| 30px | M/R | Secondary large title |
+| 28px | M | **Most used across the app**: body text, list titles, module titles, medium button text |
+| 26px | M/R | Small module/card titles |
+| 24px | R | List description text, small button text |
+| 20px | R | Helper/description text |
+| 16px | R | Smallest size: tag text, tab bar text |
 
 ---
 
-## 四、间距体系
+## 3. Buttons
 
-**基础网格：4px 倍数**
+**Universal rule: Full pill radius (cornerRadius = height/2), text padding ≥ 24px**
 
-| 用途 | 值 |
-|------|------|
-| 页面左右边距 | 24px |
-| 列表项间距 | 12-16px |
-| 模块间距 | 20-24px |
-| 卡片内边距 | 12-16px |
-| 图标与文字间距 | 8px |
-| 网格间距 | 12px |
+### 3.1 Sizes
 
----
+| Size | Height | Font Size |
+|------|--------|-----------|
+| Large | 96px | 36px |
+| Medium | 80px | 28px |
+| Small | 64px | 28px |
 
-## 五、圆角体系
+### 3.2 Style Hierarchy
 
-| 元素类型 | 圆角 |
-|------|------|
-| 头像 | 完全圆形 (50%) |
-| 卡片 | 16px |
-| 按钮 | Pill 全圆角（高度/2） |
-| 标签 / 徽章 | Pill 全圆角 |
-| 输入框 | Pill 全圆角 |
-| 筛选 Tab | Pill 全圆角 |
+| Level | Background | Text Color | Border | Usage |
+|-------|-----------|------------|--------|-------|
+| Primary | YoYo Green gradient | `#FFFFFF` | None | Core actions (confirm, submit, join) |
+| Secondary | `#FFFFFF` | `#29CC96` | `#29CC96` | Secondary actions |
+| Tertiary | `#FFFFFF` | `#999999` | `#999999` | Weak actions (skip, later) |
+| Quaternary | `#FFFFFF` | `#333333` | None | Text-link style (more, view all) |
 
 ---
 
-## 六、核心组件模式
+## 4. Spacing
 
-### 6.1 底部导航栏
-- 5 个 Tab：Home / Game / Moment / Message / Me
-- 选中态：绿色填充图标 + 绿色文字 (#29CC96)
-- 未选中态：灰色线性图标 + 灰色文字 (#999)
-- 支持未读红点
+**Base grid: 4px multiples**
 
-### 6.2 用户身份标签系统
-全 App 高频出现的复合标签组，通常跟随用户名显示：
-- 等级标签 (Lv.1)：小圆角，灰底
-- VIP 标签：VIP 渐变金色底
-- 贵族标签：按等级 1-5 有不同颜色（见 1.6）
-- 家族标签 (YOYOFAM)：按家族等级有不同底色 + 文字色组合（见 1.5）
-- 认证标签 (Official)：绿色 pill
-- 角色标签 (AI Lover / Agency / Family)：各有不同配色
-
-### 6.3 消息列表项
-头像 + 用户名（可带标签组）+ 消息预览 + 时间 + 未读红点
-
-### 6.4 房间列表项
-房间封面 + 房间名 + 简介文字 + 标签组（国旗、人数、家族、类型）+ 在线人数
-
-### 6.5 聊天气泡
-- 对方：左侧，浅灰底圆角矩形
-- 己方：右侧，浅绿底 (#D4F5EA) 圆角矩形
-- 支持：文字、语音条（波形+时长）、贴纸、图片
-- 翻译按钮跟随气泡
-
-### 6.6 聊天室座位布局
-- 房主/主持人：顶部居中，大头像
-- 嘉宾座位：5列 × 多行网格
-- 空座位：灰色椅子占位符
-- 深紫色渐变背景（#7736DA → #C943DD，方向 135°）
-
-### 6.7 道具商店卡片
-- 双列网格布局
-- 卡片：商品预览图 + 名称 + 价格标签（pill 渐变按钮，货币 icon + 价格 + 天数）
-- 卡片左上角支持展示标签（种类和颜色由业务定义）
+| Usage | Value |
+|-------|-------|
+| Page left/right padding | 24px |
+| List item spacing | 12-16px |
+| Module spacing | 20-24px |
+| Card inner padding | 12-16px |
+| Icon-to-text spacing | 8px |
+| Grid gap | 12px |
 
 ---
 
-## 七、场景专属规范
+## 5. Corner Radius
 
-### 7.1 沉浸式页面
-- 聊天室：紫色渐变背景 + 半透明浮层
-- 音频呼叫：背景图模糊 + 暗色遮罩，居中头像 + 用户信息 + 底部操作按钮
-- 视频通话：全屏视频流 + 顶部浮层信息（用户名、标签、钻石数）+ 底部工具栏
-- 通用规则：文字使用白色 (#FFFFFF) 或白色带透明度 (rgba(255,255,255,0.60))
+| Element | Radius |
+|---------|--------|
+| Avatar | Full circle (50%) |
+| Card | 16px |
+| Button | Pill (height/2) |
+| Tag / Badge | Pill |
+| Input | Pill |
+| Filter Tab | Pill |
 
-### 7.2 常规页面
-- 主页面背景：#F5F5F5，卡片/列表白底 #FFFFFF
-- 三级页面（纯内容页）背景：#FFFFFF
-- 分区分割：分割线 #E6E6E6
+---
+
+## 6. Core Component Patterns
+
+### 6.1 Bottom Navigation Bar
+- 5 Tabs: Home / Game / Moment / Message / Me
+- Selected: green filled icon + green text (#29CC96)
+- Unselected: grey line icon + grey text (#999)
+- Supports unread red dot
+
+### 6.2 User Identity Tag System
+Compound tag group that frequently appears next to usernames across the app:
+- Level tag (Lv.1): small radius, grey background
+- VIP tag: VIP gradient gold
+- Noble tag: colors by level 1-5 (see 1.7)
+- Family tag (YOYOFAM): color by family level (see 1.5/1.6)
+- Verified tag (Official): green pill
+- Role tag (AI Lover / Agency / Family): various colors
+
+### 6.3 Message List Item
+Avatar + username (with tags) + message preview + time + unread red dot
+
+### 6.4 Room List Item
+Room cover + room name + intro text + tags (flag, count, family, type) + online count
+
+### 6.5 Chat Bubbles
+- Other person: left, light grey background rounded rect
+- Self: right, light green (#D4F5EA) background
+- Supports: text, voice bar (waveform + duration), sticker, image
+- Translate button follows bubble
+
+### 6.6 Chat Room Seat Layout
+- Host: top center, large avatar
+- Guest seats: 5-column grid
+- Empty seat: grey chair placeholder
+- Dark purple gradient background (#7736DA → #C943DD, 135°)
+
+### 6.7 Item Shop Card
+- 2-column grid layout
+- Card: product preview + name + price tag (pill gradient button, currency icon + price + days)
+- Top-left corner supports display tags
+
+---
+
+## 7. Scene-Specific Rules
+
+### 7.1 Immersive Pages
+- Chat room: purple gradient background + semi-transparent overlays
+- Audio call: blurred background + dark overlay, centered avatar + user info + bottom action buttons
+- Video call: fullscreen video + top overlay info (username, tags, diamond count) + bottom toolbar
+- Universal: white text (#FFFFFF) or white with opacity (rgba(255,255,255,0.60))
+
+### 7.2 Standard Pages
+- Main page background: #F5F5F5, card/list white #FFFFFF
+- Tertiary pages (pure content): #FFFFFF
+- Section dividers: #E6E6E6
 
 ---
 
